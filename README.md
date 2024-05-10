@@ -1,2 +1,5 @@
 # ditalini
-A template for your awesome C++ scientific computing software library with wrappers for Python
+A modern template for your awesome C++ scientific computing software app/library with wrappers for Python
+
+Philip Mocz (2024)
+Flatiron Institute
