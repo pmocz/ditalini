@@ -1,7 +1,7 @@
 /** @file utils.hpp
- *  @brief Utility functions for your C++ software project
+ *  @brief Utility functions your C++ software project
  * 
- * This is the header for the utility functions of your awesome C++ library
+ * This is the header file of your utility functions
  *  @author Philip Mocz (Flatiron Institute)
  **/
 
