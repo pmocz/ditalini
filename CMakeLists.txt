@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(ditalini VERSION 0.1 LANGUAGES CXX DESCRIPTION "ditalini is a modern C++ project template")
+project(ditalini_project VERSION 0.1.0 LANGUAGES CXX DESCRIPTION "ditalini is a modern C++ project template")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")

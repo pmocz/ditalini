@@ -1,11 +1,11 @@
-/** @file ditalini.cpp
- *  @brief A modern template for your C++ software project
+/** @file square.cpp
+ *  @brief square a number
  * 
- * This is the main source file of your awesome C++ app/library
+ * Return the square of a number.
  *  @author Philip Mocz (Flatiron Institute)
  **/
 
-#include "ditalini.h"
+#include "square.hpp"
 
 namespace ditalini
 {
