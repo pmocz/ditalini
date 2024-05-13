@@ -1,10 +1,16 @@
-cmake_minimum_required(VERSION 3.8)
-project(ditalini)
+set(SRCS
+  main.cpp
+  utils/square.cpp
+)
 
-add_subdirectory(utils)
+set(HDRS
+  ditalini.hpp
+  utils/square.cpp
+  utils/utils.cpp
+)
 
-set(SOURCE_FILES main.cpp)
+convert_filenames_to_full_paths(SRCS)
+convert_filenames_to_full_paths(HDRS)
 
-add_executable(ditalini ${SOURCE_FILES})
-target_link_libraries(ditalini utils)
-install(TARGETS ditalini DESTINATION ${DITALINI_INSTALL_BIN_DIR})
+set(SOURCES ${SOURCES} ${SRCS} PARENT_SCOPE)
+set(HEADERS ${HEADERS} ${HDRS} PARENT_SCOPE)
