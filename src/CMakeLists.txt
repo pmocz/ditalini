@@ -5,8 +5,8 @@ set(SRCS
 
 set(HDRS
   ditalini.hpp
-  utils/square.cpp
-  utils/utils.cpp
+  utils/square.hpp
+  utils/utils.hpp
 )
 
 convert_filenames_to_full_paths(SRCS)

@@ -9,6 +9,15 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
+# helper
+function(convert_filenames_to_full_paths NAMES)
+  unset(tmp_names)
+  foreach(name ${${NAMES}})
+    list(APPEND tmp_names ${CMAKE_CURRENT_SOURCE_DIR}/${name})
+  endforeach()
+  set(${NAMES} ${tmp_names} PARENT_SCOPE)
+endfunction()
+
 
 #-------------------------------------------------------------------------------
 # Define and configure the Project library
