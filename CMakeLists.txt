@@ -9,6 +9,12 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
+
+#-------------------------------------------------------------------------------
+# Installation of Library and Executable
+#-------------------------------------------------------------------------------
+
+
 # helper
 function(convert_filenames_to_full_paths NAMES)
   unset(tmp_names)
@@ -18,20 +24,21 @@ function(convert_filenames_to_full_paths NAMES)
   set(${NAMES} ${tmp_names} PARENT_SCOPE)
 endfunction()
 
-
-#-------------------------------------------------------------------------------
-# Define and configure the Project library
-#-------------------------------------------------------------------------------
-
 set(SOURCES "")
 set(HEADERS "")
 add_subdirectory(src)
 
 set(MASTER_HEADER ${PROJECT_SOURCE_DIR}/src/ditalini.hpp)
 
-include_directories(${DITALINI_INSTALL_INCLUDE_DIR})
+set(INSTALL_INCLUDE_DIR include)
+set(INSTALL_BIN_DIR bin)
+set(INSTALL_LIB_DIR lib)
 
-add_library(ditalini ${SOURCES} ${HEADERS} ${MASTER_HEADER})
+add_library(libditalini SHARED ${SOURCES} ${HEADERS} ${MASTER_HEADER})
+
+add_executable(ditalini ${SOURCES})
+
+target_link_libraries(ditalini libditalini) 
 
 
 #-------------------------------------------------------------------------------
@@ -52,26 +59,26 @@ add_library(ditalini ${SOURCES} ${HEADERS} ${MASTER_HEADER})
 # Installation
 #-------------------------------------------------------------------------------
 
-set(INSTALL_INCLUDE_DIR include
-  CACHE PATH "Relative path for installing header files.")
-set(INSTALL_BIN_DIR bin
-  CACHE PATH "Relative path for installing the binaries.")
-set(INSTALL_LIB_DIR lib
-  CACHE PATH "Relative path for installing the library.")
+#set(INSTALL_INCLUDE_DIR include
+#  CACHE PATH "Relative path for installing header files.")
+#set(INSTALL_BIN_DIR bin
+#  CACHE PATH "Relative path for installing the binaries.")
+#set(INSTALL_LIB_DIR lib
+#  CACHE PATH "Relative path for installing the library.")
 
-target_include_directories(ditalini BEFORE
-  PUBLIC
-    $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
+#target_include_directories(ditalini BEFORE
+#  PUBLIC
+#    $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
 
 # Install the library
-install(TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}Targets
-  RUNTIME DESTINATION ${INSTALL_BIN_DIR}
-  LIBRARY DESTINATION ${INSTALL_LIB_DIR}
-  ARCHIVE DESTINATION ${INSTALL_LIB_DIR})
+#install(TARGETS ${PROJECT_NAME}
+#  EXPORT ${PROJECT_NAME}Targets
+#  RUNTIME DESTINATION ${INSTALL_BIN_DIR}
+#  LIBRARY DESTINATION ${INSTALL_LIB_DIR}
+#  ARCHIVE DESTINATION ${INSTALL_LIB_DIR})
 
 # Install the master header
-install(FILES ${MASTER_HEADERS} DESTINATION ${INSTALL_INCLUDE_DIR}/ditalini)
+#install(FILES ${MASTER_HEADERS} DESTINATION ${INSTALL_INCLUDE_DIR}/ditalini)
 
 # Install the headers
 #install(DIRECTORY ${PROJECT_SOURCE_DIR}/src
