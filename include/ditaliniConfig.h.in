@@ -1,0 +1,11 @@
+/**
+ * This file contains definitions made in CMakeLists.txt
+ * that we want available in the source code.
+ * In the source code, add: #include "ditaliniConfig.h" (no .in suffix).
+ * That header file is automatically generated and filled with the
+ * right definition values by CMake when building the project.
+ **/
+#define PROJECT_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define PROJECT_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define PROJECT_VERSION_PATCH @PROJECT_VERSION_PATCH@
+

@@ -9,78 +9,69 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
+# Options: Things you can set via commandline options to cmake (e.g. -DENABLE_LTO=[ON|OFF])
+option(ENABLE_WARNINGS_SETTINGS "Allow target_set_warnings to add flags and defines.
+                                 Set this to OFF if you want to provide your own warning parameters." ON)
+option(ENABLE_LTO "Enable link time optimization" ON)
+option(ENABLE_DOCTESTS "Include tests in the library. Setting this to OFF will remove all doctest related code.
+                        Tests in test/*.cpp will still be enabled." ON)
 
-#-------------------------------------------------------------------------------
-# Installation of Library and Executable
-#-------------------------------------------------------------------------------
+# Include stuff. No change needed.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+include(ConfigSafeGuards)
+include(Colors)
+include(CTest)
+include(Doctest)
+include(Documentation)
+include(LTO)
+include(Misc)
+include(Warnings)
 
+# Check for LTO support.
+find_lto(CXX)
 
-# helper
-function(convert_filenames_to_full_paths NAMES)
-  unset(tmp_names)
-  foreach(name ${${NAMES}})
-    list(APPEND tmp_names ${CMAKE_CURRENT_SOURCE_DIR}/${name})
-  endforeach()
-  set(${NAMES} ${tmp_names} PARENT_SCOPE)
-endfunction()
+# --------------------------------------------------------------------------------
+#                         Locate files (change as needed).
+# --------------------------------------------------------------------------------
+set(SOURCES          # All .cpp files in src/
+    src/ditalini.cpp
+)
+set(TESTFILES        # All .cpp files in test/
+    test/main.cpp
+)
+set(LIBRARY_NAME ditalini)  # Default name for the library built from src/*.cpp (change if you wish)
 
-set(SOURCES "")
-set(HEADERS "")
-add_subdirectory(src)
+# --------------------------------------------------------------------------------
+#                            Build! (Change as needed)
+# --------------------------------------------------------------------------------
+# Compile all sources into a library.
+add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
 
-set(MASTER_HEADER ${PROJECT_SOURCE_DIR}/src/ditalini.hpp)
+# Lib needs its header files, and users of the library must also see these (PUBLIC). (No change needed)
+target_include_directories(${LIBRARY_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
-set(INSTALL_INCLUDE_DIR include)
-set(INSTALL_BIN_DIR bin)
-set(INSTALL_LIB_DIR lib)
+# There's also (probably) doctests within the library, so we need to see this as well.
+target_link_libraries(${LIBRARY_NAME} PUBLIC doctest)
 
-add_library(libditalini SHARED ${SOURCES} ${HEADERS} ${MASTER_HEADER})
+# Set the compile options you want (change as needed).
+target_set_warnings(${LIBRARY_NAME} ENABLE ALL AS_ERROR ALL DISABLE Annoying)
+# target_compile_options(${LIBRARY_NAME} ... )  # For setting manually.
 
-add_executable(ditalini ${SOURCES})
+# Add an executable for the file app/main.cpp.
+# If you add more executables, copy these lines accordingly.
+add_executable(main app/main.cpp)   # Name of exec. and location of file.
+target_link_libraries(main PRIVATE ${LIBRARY_NAME})  # Link the executable to library (if it uses it).
+target_set_warnings(main ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Set warnings (if needed).
+target_enable_lto(main optimized)  # enable link-time-optimization if available for non-debug configurations
 
-target_link_libraries(ditalini libditalini) 
+# Set the properties you require, e.g. what C++ standard to use. Here applied to library and main (change as needed).
+set_target_properties(
+    ${LIBRARY_NAME} main
+      PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES
+        CXX_EXTENSIONS NO
+)
 
-
-#-------------------------------------------------------------------------------
-# Testing
-#-------------------------------------------------------------------------------
-
-# TODO: add_subdirectory(test)
-
-
-#-------------------------------------------------------------------------------
-# Documentation
-#-------------------------------------------------------------------------------
-
-# TODO: add_subdirectory(doc)
-
-
-#-------------------------------------------------------------------------------
-# Installation
-#-------------------------------------------------------------------------------
-
-#set(INSTALL_INCLUDE_DIR include
-#  CACHE PATH "Relative path for installing header files.")
-#set(INSTALL_BIN_DIR bin
-#  CACHE PATH "Relative path for installing the binaries.")
-#set(INSTALL_LIB_DIR lib
-#  CACHE PATH "Relative path for installing the library.")
-
-#target_include_directories(ditalini BEFORE
-#  PUBLIC
-#    $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
-
-# Install the library
-#install(TARGETS ${PROJECT_NAME}
-#  EXPORT ${PROJECT_NAME}Targets
-#  RUNTIME DESTINATION ${INSTALL_BIN_DIR}
-#  LIBRARY DESTINATION ${INSTALL_LIB_DIR}
-#  ARCHIVE DESTINATION ${INSTALL_LIB_DIR})
-
-# Install the master header
-#install(FILES ${MASTER_HEADERS} DESTINATION ${INSTALL_INCLUDE_DIR}/ditalini)
-
-# Install the headers
-#install(DIRECTORY ${PROJECT_SOURCE_DIR}/src
-#  DESTINATION ${INSTALL_INCLUDE_DIR}/ditalini
-#  FILES_MATCHING PATTERN "*.hpp")
+# Set up tests (see test/CMakeLists.txt).
+add_subdirectory(test)
