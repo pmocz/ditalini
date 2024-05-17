@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-#                         Documentation (no change needed).
+#                         Documentation
 # --------------------------------------------------------------------------------
 # Add a make target 'doc' to generate API documentation with Doxygen.
 # You should set options to your liking in the file 'Doxyfile.in'.

@@ -23,12 +23,13 @@ include(Documentation)
 include(LTO)
 include(Misc)
 include(Warnings)
+include(FindClangFormat)
 
 # Check for LTO support
 find_lto(CXX)
 
 # --------------------------------------------------------------------------------
-#                         Locate files
+#                         Files
 # --------------------------------------------------------------------------------
 set(SOURCES          # All .cpp files in src/
   src/ditalini.cpp
