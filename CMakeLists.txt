@@ -98,6 +98,8 @@ add_subdirectory(test)
 set(PYTHON_FILES
     python/ditalini/ditalini/ditalini.cpp)
 
+    set(PYTHON_PKG_NAME ditalini_module)
+
 find_package(Python 3.11.7 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
 # Detect the installed nanobind package and import it into CMake
 execute_process(
@@ -106,10 +108,12 @@ execute_process(
 list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
 find_package(nanobind CONFIG REQUIRED)
 
-nanobind_add_module(ditalini_module ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
+nanobind_add_module(${PYTHON_PKG_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
 
-target_link_libraries(ditalini_module PUBLIC)
+target_link_libraries(${PYTHON_PKG_NAME} PUBLIC)
 
-install(TARGETS ditalini_module 
-  COMPONENT python
+install(TARGETS ${PYTHON_PKG_NAME} 
   LIBRARY DESTINATION "${CMAKE_MODULE_PATH}/build")
+
+# rename python package
+set_target_properties(${PYTHON_PKG_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
