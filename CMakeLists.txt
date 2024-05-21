@@ -100,7 +100,7 @@ set(PYTHON_FILES
 
     set(PYTHON_PKG_NAME ditalini_module)
 
-find_package(Python 3.11.7 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
+find_package(Python 3.11 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
 # Detect the installed nanobind package and import it into CMake
 execute_process(
   COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
