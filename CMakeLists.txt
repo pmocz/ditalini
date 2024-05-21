@@ -32,9 +32,9 @@ find_lto(CXX)
 # --------------------------------------------------------------------------------
 # Files
 # --------------------------------------------------------------------------------
-set(SOURCES # All .cpp files in src/
+set(SOURCE_FILES
     src/ditalini.cpp)
-set(HEADER_FILES # All .h files in include/
+set(HEADER_FILES
     include/ditalini.h)
 
 set(APP_NAME main) # The main executable
@@ -44,7 +44,7 @@ set(LIBRARY_NAME ditalini) # Default name for the library built from src/*.cpp
 # Build
 # --------------------------------------------------------------------------------
 # Compile all sources into a library
-add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
+add_library(${LIBRARY_NAME} OBJECT ${SOURCE_FILES})
 
 # Lib needs its header files, and users of the library must also see these
 # (PUBLIC)
@@ -98,7 +98,6 @@ add_subdirectory(test)
 set(PYTHON_FILES
     python/ditalini/ditalini/ditalini.cpp)
 
-#set(CMAKE_PREFIX_PATH /opt/homebrew/anaconda3/lib/python3.11/site-packages/nanobind/cmake/)
 find_package(Python 3.11.7 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
 # Detect the installed nanobind package and import it into CMake
 execute_process(
@@ -107,7 +106,10 @@ execute_process(
 list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
 find_package(nanobind CONFIG REQUIRED)
 
+nanobind_add_module(ditalini_module ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
 
-nanobind_add_module(ditalini_module ${SOURCES} ${HEADER_FILES} ${PYTHON_FILES})
+target_link_libraries(ditalini_module PUBLIC)
 
-install(TARGETS ditalini_module LIBRARY DESTINATION "${CMAKE_MODULE_PATH}/build")
+install(TARGETS ditalini_module 
+  COMPONENT python
+  LIBRARY DESTINATION "${CMAKE_MODULE_PATH}/build")
