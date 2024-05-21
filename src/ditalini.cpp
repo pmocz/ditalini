@@ -5,7 +5,7 @@
  *  @author Philip Mocz (Flatiron Institute)
  **/
 
-#include "ditalini.h"
+#include "../include/ditalini.h"
 
 namespace ditalini {
 

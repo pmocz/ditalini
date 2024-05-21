@@ -5,19 +5,14 @@ project(
   DESCRIPTION "a modern C++ project template"
   LANGUAGES CXX)
 
-# Options: Things you can set via commandline options to cmake (e.g.
-# -DENABLE_LTO=[ON|OFF])
+# Options: Things you can set via commandline options to cmake 
+# (e.g. -DENABLE_LTO=[ON|OFF])
 option(
   ENABLE_WARNINGS_SETTINGS
   "Allow target_set_warnings to add flags and defines.
                                  Set this to OFF if you want to provide your own warning parameters."
   ON)
 option(ENABLE_LTO "Enable link time optimization" ON)
-option(
-  ENABLE_DOCTESTS
-  "Include tests in the library. Setting this to OFF will remove all doctest related code.
-                        Tests in test/*.cpp will still be enabled."
-  ON)
 
 # Include cmake files
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -39,8 +34,8 @@ find_lto(CXX)
 # --------------------------------------------------------------------------------
 set(SOURCES # All .cpp files in src/
     src/ditalini.cpp)
-set(TESTFILES # Just include here the main .cpp file in test/
-    test/main.cpp)
+set(HEADER_FILES # All .h files in include/
+    include/ditalini.h)
 
 set(APP_NAME main) # The main executable
 set(LIBRARY_NAME ditalini) # Default name for the library built from src/*.cpp
@@ -69,8 +64,7 @@ target_set_warnings(
 # Add an executable for the file app/main.cpp.
 add_executable(${APP_NAME} app/main.cpp) # Name of exec. and location of file.
 target_link_libraries(
-  ${APP_NAME} PRIVATE ${LIBRARY_NAME}) # Link the executable to library (if it
-                                       # uses it).
+  ${APP_NAME} PRIVATE ${LIBRARY_NAME}) # Link the executable to library.
 target_set_warnings(
   ${APP_NAME}
   ENABLE
@@ -96,3 +90,24 @@ set_target_properties(${APP_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
 
 # Set up tests (see test/CMakeLists.txt).
 add_subdirectory(test)
+
+
+# --------------------------------------------------------------------------------
+# Build Python Library
+# --------------------------------------------------------------------------------
+set(PYTHON_FILES
+    python/ditalini/ditalini/ditalini.cpp)
+
+#set(CMAKE_PREFIX_PATH /opt/homebrew/anaconda3/lib/python3.11/site-packages/nanobind/cmake/)
+find_package(Python 3.11.7 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
+# Detect the installed nanobind package and import it into CMake
+execute_process(
+  COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
+  OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE NB_DIR)
+list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
+find_package(nanobind CONFIG REQUIRED)
+
+
+nanobind_add_module(ditalini_module ${SOURCES} ${HEADER_FILES} ${PYTHON_FILES})
+
+install(TARGETS ditalini_module LIBRARY DESTINATION "${CMAKE_MODULE_PATH}/build")

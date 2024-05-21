@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 
 # List all files containing tests.
-set(TESTFILES        # All .cpp files in test/
+set(TEST_FILES        # All .cpp files in test/
   main.cpp
   square.cpp
 )
@@ -12,7 +12,7 @@ set(TEST_RUNNER_PARAMS "")  # Any arguemnts to feed the test runner
 # --------------------------------------------------------------------------------
 #                         Make Tests
 # --------------------------------------------------------------------------------
-add_executable(${TEST_MAIN} ${TESTFILES})
+add_executable(${TEST_MAIN} ${TEST_FILES})
 target_link_libraries(${TEST_MAIN} PRIVATE ${LIBRARY_NAME} doctest)
 set_target_properties(${TEST_MAIN} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 target_set_warnings(${TEST_MAIN} ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Set warnings (if needed)
