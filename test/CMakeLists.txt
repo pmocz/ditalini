@@ -28,6 +28,3 @@ add_test(
   NAME ${LIBRARY_NAME}.${TEST_MAIN}
   COMMAND ${TEST_MAIN} ${TEST_RUNNER_PARAMS}
 )
-
-# Adds a 'coverage' target.
-include(CodeCoverage)

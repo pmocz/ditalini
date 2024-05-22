@@ -10,7 +10,7 @@ project(
 option(
   ENABLE_WARNINGS_SETTINGS
   "Allow target_set_warnings to add flags and defines.
-                                 Set this to OFF if you want to provide your own warning parameters."
+  Set this to OFF if you want to provide your own warning parameters."
   ON)
 option(ENABLE_LTO "Enable link time optimization" ON)
 
@@ -101,11 +101,15 @@ set(PYTHON_FILES
 set(PYTHON_EXT_NAME ditalini_ext)
 
 # Try to import all Python components potentially needed by nanobind
-find_package(Python 3.11
+find_package(Python 3.11 EXACT REQUIRED
   REQUIRED COMPONENTS Interpreter Development.Module
   OPTIONAL_COMPONENTS Development.SABIModule)
 
-# Import nanobind through CMake's find_package mechanism
+# Detect the installed nanobind package and import it into CMake
+execute_process(
+  COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
+  OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE NB_DIR)
+list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
 find_package(nanobind CONFIG REQUIRED)
 
 nanobind_add_module(${PYTHON_EXT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
