@@ -31,7 +31,7 @@ install_requires = [line.strip() for line in lines if line]
 #with open('src/version.txt', 'r') as f:
 #    lines = f.readlines()
 #version = ".".join([line.split(' ')[1].strip() for line in lines if line])
-version="0.1.0",  # Required # XXXß
+version="0.1.0",  # Required XXXX
 print("The version is {}".format(version))
 
 class CMakeBuild(build_ext):
