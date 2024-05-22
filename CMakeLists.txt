@@ -37,7 +37,7 @@ set(SOURCE_FILES
 set(HEADER_FILES
     include/ditalini.h)
 
-set(APP_NAME main) # The main executable
+set(APP_NAME ditalini_app) # The main executable
 set(LIBRARY_NAME ditalini) # Default name for the library built from src/*.cpp
 
 # --------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ set_target_properties(
              CXX_EXTENSIONS NO)
 
 # rename main app
-set_target_properties(${APP_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
+#XXXset_target_properties(${APP_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
 
 # Set up tests (see test/CMakeLists.txt).
 add_subdirectory(test)
@@ -98,7 +98,7 @@ add_subdirectory(test)
 set(PYTHON_FILES
     python/ditalini/ditalini/ditalini.cpp)
 
-    set(PYTHON_PKG_NAME ditalini_module)
+    set(PYTHON_PKG_NAME ditalini_pkg)
 
 find_package(Python 3.11 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
 # Detect the installed nanobind package and import it into CMake
