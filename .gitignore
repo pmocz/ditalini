@@ -33,4 +33,5 @@
 
 # Others
 .DS_Store
+.vscode/
 build/
