@@ -96,24 +96,24 @@ add_subdirectory(test)
 # Build Python Library
 # --------------------------------------------------------------------------------
 set(PYTHON_FILES
-    python/ditalini/ditalini/ditalini.cpp)
+    python/ditalini/ditalini_ext.cpp)
 
-    set(PYTHON_PKG_NAME ditalini_pkg)
+set(PYTHON_EXT_NAME ditalini_ext)
 
-find_package(Python 3.11 COMPONENTS Interpreter Development.Module EXACT REQUIRED)
-# Detect the installed nanobind package and import it into CMake
-execute_process(
-  COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
-  OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE NB_DIR)
-list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
+# Try to import all Python components potentially needed by nanobind
+find_package(Python 3.11
+  REQUIRED COMPONENTS Interpreter Development.Module
+  OPTIONAL_COMPONENTS Development.SABIModule)
+
+# Import nanobind through CMake's find_package mechanism
 find_package(nanobind CONFIG REQUIRED)
 
-nanobind_add_module(${PYTHON_PKG_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
+nanobind_add_module(${PYTHON_EXT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${PYTHON_FILES})
 
-target_link_libraries(${PYTHON_PKG_NAME} PUBLIC)
+target_link_libraries(${PYTHON_EXT_NAME} PUBLIC)
 
-install(TARGETS ${PYTHON_PKG_NAME} 
-  LIBRARY DESTINATION "${CMAKE_MODULE_PATH}/build")
+install(TARGETS ${PYTHON_EXT_NAME} 
+  LIBRARY DESTINATION ${LIBRARY_NAME})
 
 # rename python package
-set_target_properties(${PYTHON_PKG_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
+set_target_properties(${PYTHON_EXT_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})

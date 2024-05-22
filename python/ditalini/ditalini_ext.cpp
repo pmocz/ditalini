@@ -5,7 +5,7 @@
 #include <nanobind/ndarray.h>
 #include <nanobind/stl/string.h>
 
-#include "../../../include/ditalini.h"
+#include "../../include/ditalini.h"
 
 namespace nb = nanobind;
 
