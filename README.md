@@ -55,4 +55,5 @@ make doc
 The `.github/workflows` directory contains this projects' continuous integration workflows
 for GitHub Actions. 
 
-The `pylint` workflow runs automatically after each push to check for errors in the python code
+The `pip` workflow runs automatically after each commit and ensures that packages 
+can be built successfully and that tests pass.
