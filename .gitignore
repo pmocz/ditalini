@@ -35,3 +35,6 @@
 .DS_Store
 .vscode/
 build/
+
+# Python
+__pycache__
