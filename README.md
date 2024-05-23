@@ -1,12 +1,15 @@
 # ditalini
 
 [![PyPI Version Status][pypi-badge]][pypi-link]
-![Python Package](https://github.com/pmocz/ditalini/actions/workflows/python-package.yml/badge.svg?event=push)
+[![Python Package Status][workflow-package-badge]][workflow-package-link]
 
-[pypi-link]:     https://pypi.org/project/ditalini/
-[pypi-badge]:    https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
+[pypi-link]:               https://pypi.org/project/ditalini/
+[pypi-badge]:              https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
+[workflow-package-link]:   https://github.com/pmocz/ditalini/actions/workflows/python-package.yml
+[workflow-package-badge]:  https://github.com/pmocz/ditalini/actions/workflows/python-package.yml/badge.svg?event=push
 
-**Philip Mocz** (2024)
+
+[**Philip Mocz**](https://pmocz.github.io) (2024)
 Flatiron Institute
 
 A modern template for your awesome C++ scientific computing software app/library with wrappers for Python. This repository sets up a project for a standalone C++ library and app, that is also wrapped into a Python package using [nanobind](https://github.com/wjakob/nanobind) and
