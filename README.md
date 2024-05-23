@@ -1,6 +1,9 @@
 # ditalini
 
-|PyPI Version|
+[![PyPI Version Status][pypi-badge]][pypi-link]
+
+[pypi-link]:        https://pypi.org/project/ditalini/
+[pypi-badge]:        https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
 
 **Philip Mocz** (2024)
 Flatiron Institute
@@ -59,7 +62,3 @@ for GitHub Actions.
 
 The `python-package` workflow will automaticallt install Python dependencies, run tests, 
 and lint with a variety of Python versions on pushes.
-
-.. |PyPI Version| image:: https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
-   :target: https://pypi.org/project/ditalini/
-   :alt: pypi
