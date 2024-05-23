@@ -1,5 +1,7 @@
 # ditalini
 
+|PyPI Version|
+
 **Philip Mocz** (2024)
 Flatiron Institute
 
@@ -55,5 +57,9 @@ make doc
 The `.github/workflows` directory contains this projects' continuous integration workflows
 for GitHub Actions. 
 
-The `python-package` workflow will install Python dependencies, run tests, 
-and lint with a variety of Python versions, automatically on pushes.
+The `python-package` workflow will automaticallt install Python dependencies, run tests, 
+and lint with a variety of Python versions on pushes.
+
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
+   :target: https://pypi.org/project/ditalini/
+   :alt: pypi

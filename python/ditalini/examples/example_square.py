@@ -6,9 +6,10 @@
 
 import ditalini
 
+
 def main():
 
-    sim = ditalini.Simulation(17)  
+    sim = ditalini.Simulation(17)
     print("The square of 17 is", sim.square())
 
 
