@@ -3,6 +3,11 @@
 [![Pip Action Status][actions-pip-badge]][actions-pip-link]
 [![Wheel Action Status][actions-wheels-badge]][actions-wheels-link]
 
+[actions-pip-link]:        https://github.com/wjakob/nanobind_example/actions?query=workflow%3APip
+[actions-pip-badge]:       https://github.com/wjakob/nanobind_example/workflows/Pip/badge.svg
+[actions-wheels-link]:     https://github.com/wjakob/nanobind_example/actions?query=workflow%3AWheels
+[actions-wheels-badge]:    https://github.com/wjakob/nanobind_example/workflows/Wheels/badge.svg
+
 **Philip Mocz** (2024)
 Flatiron Institute
 
