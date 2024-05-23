@@ -25,7 +25,7 @@ Obtain the package with:
 pip install ditalini
 ```
 
-The package can than be used in your Python script
+The package can then be used in your Python script
 
 ```python
 import ditalini
@@ -41,7 +41,7 @@ pip install .
 
 ### Build with CMake
 
-Clone this repository and then do: 
+The repository can also be build with [CMake](https://cmake.org/). Clone this repository and then do: 
 
 ```console
 mkdir build
