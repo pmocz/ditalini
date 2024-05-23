@@ -59,6 +59,10 @@ Documentation can be generated with
 make doc
 ```
 
+## Documentation
+
+
+
 ## CI
 
 The `.github/workflows` directory contains this projects' continuous integration workflows
@@ -66,3 +70,5 @@ for GitHub Actions.
 
 The `python-package` workflow will automatically install Python dependencies, run tests, 
 and lint with a variety of Python versions on pushes.
+
+The `python-publish` workflow will automatically upload this repository to PyPI when a release is created. The user must set a secret `PYPI_API_TOKEN` variable in Github.

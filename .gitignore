@@ -38,3 +38,4 @@ build/
 
 # Python
 __pycache__
+_version.py
