@@ -23,6 +23,7 @@
 cmake_minimum_required(VERSION 3.8)
 
 include( CMakeParseArguments )
+find_package(Git)
 
 function( version_from_git )
   # Parse arguments
