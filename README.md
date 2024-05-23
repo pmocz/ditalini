@@ -55,5 +55,5 @@ make doc
 The `.github/workflows` directory contains this projects' continuous integration workflows
 for GitHub Actions. 
 
-The `pip` workflow runs automatically after each commit and ensures that packages 
-can be built successfully and that tests pass.
+The `python-package` workflow will install Python dependencies, run tests, 
+and lint with a variety of Python versions, automatically on pushes.
