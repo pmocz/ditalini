@@ -64,5 +64,5 @@ make doc
 The `.github/workflows` directory contains this projects' continuous integration workflows
 for GitHub Actions. 
 
-The `python-package` workflow will automaticallt install Python dependencies, run tests, 
+The `python-package` workflow will automatically install Python dependencies, run tests, 
 and lint with a variety of Python versions on pushes.
