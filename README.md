@@ -1,9 +1,10 @@
 # ditalini
 
 [![PyPI Version Status][pypi-badge]][pypi-link]
+![Python Package](https://github.com/pmocz/ditalini/actions/workflows/python-package.yml/badge.svg?event=push)
 
-[pypi-link]:        https://pypi.org/project/ditalini/
-[pypi-badge]:        https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
+[pypi-link]:     https://pypi.org/project/ditalini/
+[pypi-badge]:    https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
 
 **Philip Mocz** (2024)
 Flatiron Institute
