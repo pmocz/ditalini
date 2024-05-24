@@ -23,12 +23,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: pmocz/ditalini
+        fetch-depth: 0
     - name: Get tags
-      run:  |
-        git fetch --prune --unshallow --tags
-        echo $?
-        git tag --list
+      run: |
+        git fetch --force
+        git fetch --tags --force
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
