@@ -28,7 +28,7 @@ jobs:
     - name: Get tags
       run: |
         git fetch --tags
-        echo git describe
+        echo $(git describe)
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
