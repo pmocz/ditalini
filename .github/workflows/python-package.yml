@@ -21,13 +21,7 @@ jobs:
         python-version: ["3.11"]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: Assign dummy tag
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git tag -a "v0.0.0" -m "Dummy tag"
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
