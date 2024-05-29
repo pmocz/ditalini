@@ -57,7 +57,7 @@ make
 
 ## Documentation
 
-Two sets of documentation are automatically created. 
+Two sets of documentation can be generated. 
 Doxygen creates documentation for the C++ Library. 
 Sphinx (+Breathe) creates documentation for the entire project (C++ library and Python package).
 

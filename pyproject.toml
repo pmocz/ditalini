@@ -11,11 +11,11 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-dependencies = ["numpy", "sphinx", "breathe"]
+dependencies = ["numpy"]
 dynamic = ["version"]
 
 # [project.optional-dependencies]
-# docs = ["sphinx", "sphinx-rtd-theme", "breathe"]
+docs = ["sphinx", "sphinx-rtd-theme", "breathe"]
 
 [project.urls]
 Documentation = "https://ditalini.readthedocs.io/"

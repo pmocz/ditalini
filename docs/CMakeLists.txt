@@ -1,5 +1,5 @@
-find_package(Doxygen REQUIRED)
-find_package(Sphinx REQUIRED)
+find_package(Doxygen)
+find_package(Sphinx)
 
 # Find all the public headers
 file(GLOB_RECURSE DITALINI_PUBLIC_HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
@@ -25,11 +25,13 @@ add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
 		VERBATIM)
 
 # Nice named target so we can run the job easily
-add_custom_target(doxygen ALL DEPENDS ${DOXYGEN_INDEX_FILE})
+add_custom_target(doxygen DEPENDS ${DOXYGEN_INDEX_FILE})
 
 set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
 set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/sphinx)
 set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
+
+file(MAKE_DIRECTORY ${SPHINX_BUILD}) 
 
 # Only regenerate Sphinx when:
 #  - Doxygen has rerun 
@@ -50,7 +52,7 @@ add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
 	COMMENT "Generating documentation with Sphinx")
 
 # Nice named target so we can run the job easily
-add_custom_target(sphinx ALL DEPENDS ${SPHINX_INDEX_FILE})
+add_custom_target(sphinx DEPENDS ${SPHINX_INDEX_FILE})
 
 include(GNUInstallDirs)
 install(DIRECTORY ${SPHINX_BUILD}
