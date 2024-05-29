@@ -25,7 +25,6 @@ include(ConfigSafeGuards)
 include(Colors)
 include(CTest)
 include(Doctest)
-include(Documentation)
 include(LTO)
 include(Misc)
 include(Warnings)
@@ -126,3 +125,9 @@ install(TARGETS ${PYTHON_EXT_NAME}
 
 # rename python package
 set_target_properties(${PYTHON_EXT_NAME} PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
+
+
+# --------------------------------------------------------------------------------
+# Documentation (with Doxygen and Sphinx+Breathe)
+# --------------------------------------------------------------------------------
+add_subdirectory ("docs")

@@ -16,13 +16,14 @@ A modern template for your awesome C++ scientific computing software app/library
 [scikit-build-core](https://scikit-build-core.readthedocs.io/en/latest/index.html).
 The package is set up to be publishable at [PyPI](https://pypi.org/).
 
+
 ## Installation
 
 The project can be installed in a few different ways.
 
 ### Get the Python Package
 
-Obtain the package with:
+Obtain the published version of the package with:
 
 ```console
 pip install ditalini
@@ -53,14 +54,12 @@ cmake ..
 make
 ```
 
-Documentation can be generated with
-
-```console
-make doc
-```
 
 ## Documentation
 
+Two sets of documentation are automatically created. 
+Doxygen creates documentation for the C++ Library. 
+Sphinx (+Breathe) creates documentation for the entire project (C++ library and Python package).
 
 
 ## CI
@@ -68,7 +67,6 @@ make doc
 The `.github/workflows` directory contains this projects' continuous integration workflows
 for GitHub Actions. 
 
-The `python-package` workflow will automatically install Python dependencies, run tests, 
-and lint with a variety of Python versions on pushes.
+The `python-package` workflow will automatically install Python dependencies and run tests on pushes.
 
 The `python-publish` workflow will automatically upload this repository to PyPI when a release is created. The user must set a secret `PYPI_API_TOKEN` variable in Github.
