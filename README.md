@@ -2,19 +2,25 @@
 
 [![PyPI Version Status][pypi-badge]][pypi-link]
 [![Python Package Status][workflow-package-badge]][workflow-package-link]
+[![Readthedocs Status][docs-badge]][docs-link]
 
 [pypi-link]:               https://pypi.org/project/ditalini/
 [pypi-badge]:              https://img.shields.io/pypi/v/ditalini?label=PyPI&logo=pypi
 [workflow-package-link]:   https://github.com/pmocz/ditalini/actions/workflows/python-package.yml
 [workflow-package-badge]:  https://github.com/pmocz/ditalini/actions/workflows/python-package.yml/badge.svg?event=push
+[docs-link]:               https://ditalini.readthedocs.io/en/latest/
+[docs-badge]:              https://readthedocs.org/projects/ditalini/badge/
 
 
 [**Philip Mocz**](https://pmocz.github.io) (2024)
 Flatiron Institute
 
-A modern template for your awesome C++ scientific computing software app/library with wrappers for Python. This repository sets up a project for a standalone C++ library and app, that is also wrapped into a Python package using [nanobind](https://github.com/wjakob/nanobind) and
+A modern template for your awesome C++ scientific computing software app/library with wrappers for Python. 
+This repository sets up a project for a standalone C++ library and app, 
+that is also wrapped into a Python package using [nanobind](https://github.com/wjakob/nanobind) and
 [scikit-build-core](https://scikit-build-core.readthedocs.io/en/latest/index.html).
 The package is set up to be publishable at [PyPI](https://pypi.org/).
+Documentation is automatically generated at [readthedocs](https://ditalini.readthedocs.io/).
 
 
 ## Installation
@@ -57,9 +63,10 @@ make
 
 ## Documentation
 
-Two sets of documentation can be generated. 
-Doxygen creates documentation for the C++ Library. 
-Sphinx (+Breathe) creates documentation for the entire project (C++ library and Python package).
+Documentation is automatically generated and hosted at [readthedocs](https://ditalini.readthedocs.io/) with each push.
+First, [Doxygen](https://www.doxygen.nl/) creates documentation for the C++ Library. 
+Then, [Sphinx](https://www.sphinx-doc.org/en/master/) with the [Breathe](https://breathe.readthedocs.io/en/latest/) 
+extension creates a final documentation for the entire project (C++ library and Python package).
 
 
 ## CI
