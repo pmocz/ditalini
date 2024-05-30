@@ -15,11 +15,11 @@
 [**Philip Mocz**](https://pmocz.github.io) (2024)
 Flatiron Institute
 
-A modern template for your awesome C++ scientific computing software app/library with wrappers for Python. 
+A modern template for your awesome C++ scientific computing software library/app with wrappers for Python. 
 This repository sets up a project for a standalone C++ library and app, 
 that is also wrapped into a Python package using [nanobind](https://github.com/wjakob/nanobind) and
 [scikit-build-core](https://scikit-build-core.readthedocs.io/en/latest/index.html).
-The package is set up to be publishable at [PyPI](https://pypi.org/).
+The package is automatically published at [PyPI](https://pypi.org/) with each version release.
 Documentation is automatically generated at [readthedocs](https://ditalini.readthedocs.io/).
 
 
@@ -35,10 +35,12 @@ Obtain the published version of the package with:
 pip install ditalini
 ```
 
-The package can then be used in your Python script
+Use the package in your own Python script, e.g.:
 
 ```python
 import ditalini
+
+sim = ditalini.Simulation(42)
 ```
 
 ### Build with pip
@@ -51,7 +53,7 @@ pip install .
 
 ### Build with CMake
 
-The repository can also be build with [CMake](https://cmake.org/). Clone this repository and then do: 
+The repository can also be built with [CMake](https://cmake.org/). Clone this repository and then do: 
 
 ```console
 mkdir build
@@ -66,7 +68,8 @@ make
 Documentation is automatically generated and hosted at [readthedocs](https://ditalini.readthedocs.io/) with each push.
 First, [Doxygen](https://www.doxygen.nl/) creates documentation for the C++ Library. 
 Then, [Sphinx](https://www.sphinx-doc.org/en/master/) with the [Breathe](https://breathe.readthedocs.io/en/latest/) 
-extension creates a final documentation for the entire project (C++ library and Python package).
+extension creates a final documentation for the entire project (C++ library and Python package). 
+To build the documentation on your own, you can type `make doxygen` and `make sphinx` in the `build/` directory.
 
 
 ## CI

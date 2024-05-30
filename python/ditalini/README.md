@@ -1,8 +1,8 @@
-# Ditatlini
+# ditalini
 
-Principal author **Philip Mocz**, 2024.
+Principal author [**Philip Mocz**](https://pmocz.github.io), 2024.
 
-This package provides a Python interface to the library.
+This package provides a Python interface to the C++ library.
 
 Install with:
 
