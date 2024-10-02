@@ -105,8 +105,7 @@ set(PYTHON_FILES
 set(PYTHON_EXT_NAME ditalini_ext)
 
 # Try to import all Python components potentially needed by nanobind
-# XXX switch to Python 3.8
-find_package(Python 3.11 EXACT REQUIRED
+find_package(Python 3.12 EXACT REQUIRED
   REQUIRED COMPONENTS Interpreter Development.Module
   OPTIONAL_COMPONENTS Development.SABIModule)
 
