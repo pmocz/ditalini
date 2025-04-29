@@ -8,10 +8,9 @@ import ditalini
 
 
 def main():
-
     sim = ditalini.Simulation(17)
     print("The square of 17 is", sim.square())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
