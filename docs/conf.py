@@ -14,7 +14,8 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import subprocess, os
+import subprocess
+import os
 
 
 def configureDoxyfile(input_dir, output_dir):
